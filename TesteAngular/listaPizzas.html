@@ -1,0 +1,64 @@
+<html>
+<head>
+    <script type="text/javascript" src="angular.min.js"></script>
+</head>
+<body ng-app="meuApp" ng-controller="meuCtrl">
+   
+    <h2>Lista de Pizzas</h2>
+    <ul>
+        <li ng-repeat="p in lista">
+            {{p.nome}} - R$ {{p.preco}} <button ng-click="addCarrinho($index)">+</button>
+        </li>
+    </ul>
+ 
+    <h2>Carrinho</h2>
+    <ul>
+        <li ng-repeat="p in carrinho">
+            {{p.info.nome}} - Qt: {{p.qt}} - R$ {{p.info.preco * p.qt}}
+        </li>
+    </ul>
+    TOTAL: R$ {{total}}
+ 
+ 
+<script type="text/javascript">
+var app = angular.module('meuApp', []);
+app.controller('meuCtrl', function($scope){
+ 
+    $scope.total = 0;
+    $scope.carrinho = [];
+    $scope.lista = [
+        {'id':'123', 'nome': "Calabresa", 'preco':20},
+        {'id':'99', 'nome': "Mussarela", 'preco':15},
+        {'id':'34', 'nome': "Chocolate", 'preco':25.5}
+    ];
+ 
+    $scope.addCarrinho = function(x){
+        var pz = $scope.lista[x];
+ 
+        var found = false;
+        var obj;
+ 
+        for( i in $scope.carrinho) {
+            if($scope.carrinho[i].id == pz.id) {
+                found = true;
+                obj = i;
+            }
+        }
+ 
+        if(found) {
+            $scope.carrinho[obj].qt++;
+        } else {
+            $scope.carrinho.push({'id':pz.id, 'qt':1, 'info':pz});
+        }
+ 
+        $scope.total = 0;
+        for( i in $scope.carrinho) {
+            $scope.total += $scope.carrinho[i].info.preco * $scope.carrinho[i].qt;
+        }
+ 
+    }
+ 
+});
+</script>
+</body>
+</html>

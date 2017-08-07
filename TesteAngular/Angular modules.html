@@ -1,0 +1,36 @@
+	<html>
+	<head>
+		<title>Angular js</title>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.32/angular.min.js">
+			
+
+		</script>
+	</head>
+	<body ng-app="meuApp" ng-controller="meuCtrl" >
+	<!--
+	ng-init faz co que quando a aplicacao inicie ele defina algo, no caso ele define a variavel nome ja como Yacov
+	ng-init="nome = 'Yacov'" .
+
+	ng-controller define qual o controleer ira controlar a aplicacao.
+
+	 -->
+		<!--Cada ng é chamado directives/ podemos usar uma expressao tmb  com chaves {{}} -->
+			<input type="text" ng-model="nome"/><br>
+			<input type="text" ng-model="segundonome"/><br>
+			
+			{{nome+ " " + segundonome}}	
+
+		
+
+
+	<script type="text/javascript">
+	var app = angular.module("meuApp", []);
+	//$scope seria como a raiz de toda a aplicação.
+	app.controller('meuCtrl' , function($scope){
+		$scope.nome = "Yacov";
+		$scope.segundonome = "Rosenebrg"
+	})
+		
+	</script>
+	</body>
+	</html>

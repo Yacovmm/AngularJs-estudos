@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>lista</title>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.32/angular.min.js"></script>
+</head>
+<body ng-app="myApp" ng-controller="myCtrl">
+	<h2>Listas</h2>
+	
+	<input type="text" ng-model="addText">
+	<button ng-click="addItem()">+</button>	<br>
+	<span>{{aviso}}</span>
+
+	<ul>
+		<li ng-repeat="x in lista"> 
+		{{x}} <button ng-click="removeItem($index)">-</button>
+
+		 </li>
+	</ul>	
+	
+<script type="text/javascript">
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope){
+	
+	$scope.lista =['leite', 'pao'];
+
+	$scope.addItem = function(){
+		$scope.aviso = " ";
+		if ($scope.addText != ' ') {
+			if ($scope.lista.indexOf($scope.addText) == -1) {
+				$scope.lista.push( $scope.addText );
+			} else {
+				$scope.aviso = "Item já adicionado";
+			}
+		}
+		$scope.addText = '';
+	}
+
+	$scope.removeItem = function(x) {
+		$scope.aviso = "";
+		$scope.lista.splice(x, 1);
+	}
+
+});
+</script>
+</body>
+</html>

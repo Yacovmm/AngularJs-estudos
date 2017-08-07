@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Angular REPEAT</title>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.32/angular.min.js"></script>
+</head>
+<body ng-app="myApp" ng-controller="myCtrl">
+	<h2>Receita do bolo</h2>
+	
+	<!--ng-repeat faz com que a marcacao se repita sempre 
+		o angular permite vc colocar filters dentro das expressoes fazemos isso através do simbolo |
+		podemos filtrar tmb no proprio direct EX. <li ng-repeat="ing in ingredientes | filter:'o'">
+		Quando crimos o filtro no controller temos que fazer a chamada dele no repeat
+		Podemos colocar o filtro numa input text o chamando atraves do ng-model
+	-->
+		<input type="text" ng-model="filtrarPor">
+
+		<ul>
+			<li ng-repeat="ing in ingredientes | filter:filtrarPor">
+				
+				{{ing.qnt}} de {{ing.nome}}
+			</li>
+		</ul>
+
+	
+
+
+<script type="text/javascript">
+var app = angular.module('myApp',[]);
+	app.controller('myCtrl', function($scope){
+		//Podemos adicionar um filtro por aqui:
+		$scope.filtrarPor = "a"
+		$scope.ingredientes = [
+			{'nome':'farinha', 'qnt': '200g'},
+			{'nome':'ovo', 'qnt':'3g'},
+			{'nome':'chocolate','qnt':'500g'}
+		];
+
+		
+	});	
+</script>
+</body>
+</html>

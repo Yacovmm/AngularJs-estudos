@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Angular hide/show</title>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.32/angular.min.js"></script>
+</head>
+<body data-ng-app="myApp" data-ng-controller="myCtrl">
+	<h2>Restaurante x</h2>
+	
+	<p data-ng-show="hora < 17">Estamos abertos agora as {{hora}}</p>
+	
+
+	<!--A diretiva ng show, posso usar ela com true ou false (0/1)
+		
+	 -->
+	<p data-ng-show="1">frase 2</p>
+
+<script type="text/javascript">
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope){
+	$scope.hora = 15;
+	
+});
+</script>
+</body>
+</html>

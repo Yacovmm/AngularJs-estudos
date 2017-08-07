@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Angular Http</title>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.32/angular.min.js"></script>
+</head>
+<body ng-app="myApp" ng-controller="myCtrl">
+	<h2>Lista de nomes</h2>
+	
+	<div>{{html}}</div>	
+
+<script type="text/javascript">
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope, $http){
+	$scope.html = "nada";
+
+	$http.get('pagina1.html').then(function(response){
+		$scope.html = response.data;
+	});	
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<htmlt>
+<head>
+    <title>Angular eventos</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.32/angular.min.js" > </script>
+</head>
+<body ng-app="myApp" ng-controller="myCtrl">
+    <button ng-click="acao()">  {{texto}}</button>
+    
+    <div ng-show="mostrar">
+        <h2> MENU:</h2>
+        <div>Pizza</div>
+        <div>Feijao</div>
+        <div>arroz</div>
+    </div>
+
+
+        
+<!--
+<button ng-click="adicionar()">+1 </button>
+    <p>{{contador}} </p>
+        Uma forma de fazer é assim: 
+    <button ng-click="contador = contador+1">+1 </button>
+
+    <button ng-click="contador = contador-1">-1 </button>
+    -->
+<script type="text/javascript">
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope){
+    $scope.contador = 0;
+    $scope.mostrar = false ;
+    $scope.texto = "Mostrar";
+   
+   $scope.acao = function(){
+
+       if($scope.mostrar == false){
+           $scope.mostrar = true;
+           $scope.texto = "Hide";
+       } else {
+           $scope.mostrar = false;
+           $scope.texto = "Mostrar";
+        }
+       }
+   }
+   /* $scope.adicionar = function(){
+        $scope.contador = $scope.contador + 1;
+    };*/
+); 
+</script>
+</body>

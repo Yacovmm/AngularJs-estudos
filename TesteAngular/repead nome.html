@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Angular REPEAT</title>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.32/angular.min.js"></script>
+</head>
+<body ng-app="myApp" ng-controller="myCtrl">
+		
+	<!--ng-repeat faz com que a marcacao se repita sempre 
+		o angular permite vc colocar filters dentro das expressoes fazemos isso através do simbolo |
+		podemos filtrar tmb no proprio direct EX. <li ng-repeat="ing in ingredientes | filter:'o'">
+		Quando crimos o filtro no controller temos que fazer a chamada dele no repeat
+		Podemos colocar o filtro numa input text o chamando atraves do ng-model
+	-->
+
+	<!--Podemos associar um filtro a uma opcao por exemplo -->
+		<h2>Lista de nomes</h2>
+		<select ng-model="ordenarPor">
+			<option value=""></option>
+			<option value="nome">Nome</option>
+			<option value="pais">Pais</option>
+		</select>
+		Filtrar :	<input type="texte" ng-model="filtraPor">
+		
+		<table border="0" width="500px">
+			
+			<tr>
+				<th align="left">Nome</th>
+				<th align="left">Pais</th>
+			</tr>
+			<tr ng-repeat="x in nomes | orderBy:ordenarPor | filter:filtraPor" >
+				<td>{{x.nome}}</td>
+				<td>{{x.pais}}</td>
+			</tr>
+
+
+		</table>
+
+
+<script type="text/javascript">
+var app = angular.module('myApp',[]);
+	app.controller('myCtrl', function($scope){
+		//Podemos adicionar um filtro por aqui:
+		$scope.filtraPor = ""; 		//Podemos filtra por aqui, ou criar opcao por exemple
+		$scope.nomes = [
+			{nome:'yacov',pais:'Brasil'},
+			{nome:'fulano',pais:'alemanha'},
+			{nome:'Marcio',pais:'australia'},
+			{nome:'belcrano',pais:'russia'},
+			{nome:'renar',pais:'argentina'},
+			{nome:'felipe',pais:'israel'},
+			{nome:'cicrano',pais:'eua'}
+		];
+
+		
+	});	
+</script>
+</body>
+</html>
